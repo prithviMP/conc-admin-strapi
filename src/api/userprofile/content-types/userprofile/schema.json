@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "userprofiles",
+  "info": {
+    "singularName": "userprofile",
+    "pluralName": "userprofiles",
+    "displayName": "userprofile"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "biginteger",
+      "unique": true,
+      "required": true
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female",
+        "other"
+      ]
+    },
+    "age": {
+      "type": "biginteger"
+    }
+  }
+}

@@ -850,6 +850,11 @@ export interface ApiLevelLevel extends Schema.CollectionType {
       'manyToMany',
       'api::module.module'
     >;
+    purchase: Attribute.Relation<
+      'api::level.level',
+      'manyToOne',
+      'api::purchase.purchase'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -911,19 +916,20 @@ export interface ApiPurchasePurchase extends Schema.CollectionType {
     singularName: 'purchase';
     pluralName: 'purchases';
     displayName: 'purchase';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    admin_user: Attribute.Relation<
+    users_permissions_user: Attribute.Relation<
       'api::purchase.purchase',
       'oneToOne',
-      'admin::user'
+      'plugin::users-permissions.user'
     >;
-    level: Attribute.Relation<
+    levels: Attribute.Relation<
       'api::purchase.purchase',
-      'oneToOne',
+      'oneToMany',
       'api::level.level'
     >;
     purchased_date: Attribute.DateTime;
@@ -940,6 +946,47 @@ export interface ApiPurchasePurchase extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::purchase.purchase',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiUserprofileUserprofile extends Schema.CollectionType {
+  collectionName: 'userprofiles';
+  info: {
+    singularName: 'userprofile';
+    pluralName: 'userprofiles';
+    displayName: 'userprofile';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    users_permissions_user: Attribute.Relation<
+      'api::userprofile.userprofile',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    Name: Attribute.String;
+    lastName: Attribute.String;
+    city: Attribute.String;
+    address: Attribute.String;
+    mobile: Attribute.BigInteger & Attribute.Required & Attribute.Unique;
+    gender: Attribute.Enumeration<['male', 'female', 'other']>;
+    age: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::userprofile.userprofile',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::userprofile.userprofile',
       'oneToOne',
       'admin::user'
     > &
@@ -969,6 +1016,7 @@ declare module '@strapi/types' {
       'api::level.level': ApiLevelLevel;
       'api::module.module': ApiModuleModule;
       'api::purchase.purchase': ApiPurchasePurchase;
+      'api::userprofile.userprofile': ApiUserprofileUserprofile;
     }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_posts_polls",
+  "info": {
+    "displayName": "Poll"
+  },
+  "options": {},
+  "attributes": {
+    "options": {
+      "type": "component",
+      "repeatable": true,
+      "component": "polls.option"
+    }
+  }
+}

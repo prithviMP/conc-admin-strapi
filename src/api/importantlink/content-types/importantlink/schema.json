@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "importantlinks",
+  "info": {
+    "singularName": "importantlink",
+    "pluralName": "importantlinks",
+    "displayName": "Importantlink",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
